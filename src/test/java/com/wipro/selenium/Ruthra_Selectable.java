@@ -14,29 +14,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.wipro.BaseTest;
+
 @Test
 public class Ruthra_Selectable  extends BaseTest {
 	
 	By title=By.xpath("//h1[@class='entry-title']");
-	By itemList =By.xpath("//ol[@id='selectable']");
+	By itemList =By.xpath("//li[@class='ui-widget-content ui-selectee']");
 	
 	
   public void selectable(){
 	  
 	  driver.get("https://demoqa.com/selectable/");
 	  
-	  WebDriverWait wait = new WebDriverWait(driver, 30);
+	  
 	  wait.until(ExpectedConditions.visibilityOfElementLocated(title));
 	  
-	  WebElement element = driver.findElement(title);	  
+	  WebElement element = findElement(title);	  
 	  Assert.assertTrue(element.isDisplayed(),"Element is not displayed");
 	  
 	  List<WebElement> list = driver.findElements(itemList);
+	  
+	  //System.out.println(list.size());
 	  
 	  for (int i = 0; i < list.size(); i++) {
 		
 		  list.get(i).click();
 		  System.out.println(list.get(i).getText());
+		  //System.out.println(" print i "+i );
+		  System.out.println(list.get(i).getText()+" is clicked ");
+		  
 	}
 	  
 	    
