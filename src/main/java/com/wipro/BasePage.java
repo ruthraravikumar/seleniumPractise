@@ -1,4 +1,4 @@
-package com.wipro.selenium;
+package com.wipro;
 
 public class BasePage {
 
