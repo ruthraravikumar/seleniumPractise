@@ -67,7 +67,7 @@ public class RuthraOlayUK extends BaseTest {
 		 Select year= new Select(driver.findElement(selectYear));
 		 year.selectByVisibleText("2001");
 		 
-		 
+		
 		 wait.until(ExpectedConditions.elementToBeClickable(registerButton));
 		
 		 click(registerButton);

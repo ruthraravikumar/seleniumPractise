@@ -17,11 +17,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -29,13 +34,19 @@ import com.google.gson.JsonParser;
 
 public class BaseTest {
 	
-	public WebDriver driver;
+	public static WebDriver driver;
 	public Properties properties;
 	public WebDriverWait wait ;
+	String driverName;
 
+	
 	@BeforeSuite
-	public void startUp(){
+	public void loadPropFile(){
 		
+	}
+	
+	@BeforeClass
+	public void startUp(){
 		try {
 			properties = new Properties();
 			FileInputStream  fileObj = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\DataFiles\\application.properties");
@@ -47,8 +58,10 @@ public class BaseTest {
 			e.printStackTrace();
 		}
 		
-		String driverName=properties.getProperty("Driver");
-		System.out.println(driverName);
+		System.out.println("In Before Test");
+		
+		driverName=properties.getProperty("Driver");
+		System.out.println("driver is :"+driverName);
 		
 		if(driverName.equalsIgnoreCase("ChromeDriver"))
 		{
@@ -69,16 +82,26 @@ public class BaseTest {
 		
 	}
 	
-	@AfterSuite
-	public void tearUP(){
-		//driver.quit();
+	public static WebDriver getDriver(){
+		return driver;
 	}
 	
-	public void fluentwait(){
-		Wait<WebDriver> fluentwait = new FluentWait<WebDriver>(driver)							
-				.withTimeout(30, TimeUnit.SECONDS) 			
-				.pollingEvery(5, TimeUnit.SECONDS) 			
-				.ignoring(NoSuchElementException.class);
+	@AfterClass
+	public void tearUP(){
+		System.out.println("In After Test");
+		
+		driver.quit();
+	}
+	
+	public void fluentwait(By locator){
+		
+	FluentWait<WebDriver> fluentwait = new FluentWait<WebDriver>(driver)							
+	.withTimeout(60, TimeUnit.SECONDS) 			
+	.pollingEvery(5, TimeUnit.SECONDS) 			
+	.ignoring(NoSuchElementException.class);
+	
+	fluentwait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	
 	}
 	
 	public WebElement findElement(By input){
