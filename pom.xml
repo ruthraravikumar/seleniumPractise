@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <properties>
-  <selenium.version>2.45.0</selenium.version>
+  <selenium.version>2.53.1</selenium.version>
   </properties>
   
   <dependencies>
@@ -15,11 +15,17 @@
         <version>${selenium.version}</version>
         
     </dependency>
+    
+   <!--  <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-server</artifactId>
+    <version>4.0.0-alpha-2</version>
+</dependency>
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-remote-driver</artifactId>
         <version>${selenium.version}</version>
-    </dependency>
+    </dependency> -->
     
     <dependency>
         <groupId>org.testng</groupId>
@@ -36,7 +42,7 @@
    <dependency>
     <groupId>com.googlecode.json-simple</groupId>
     <artifactId>json-simple</artifactId>
-    <version>1.1</version>
+    <version>1.1.1</version>
 </dependency>
    <dependency>
 <groupId>org.apache.poi</groupId>
@@ -49,6 +55,15 @@
    <artifactId>poi-ooxml</artifactId>
    <version>4.1.1</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+
 
     </dependencies>
   

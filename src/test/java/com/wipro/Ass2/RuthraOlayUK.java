@@ -1,7 +1,10 @@
 package com.wipro.Ass2;
 
+import java.io.IOException;
+import java.util.Map;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -9,9 +12,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wipro.BaseTest;
+import com.wipro.Excel;
 
 @Test
 public class RuthraOlayUK extends BaseTest {
+	
+	public static Logger log= Logger.getLogger(RuthraOlayUK.class.getName());
 	
 	By registerLink=By.xpath("//a[contains(text(),'Register')]");
 	By emailXpath=By.xpath("//input[@name='phdesktopbody_0$phdesktopbody_0_grs_account[emails][0][address]']");
@@ -30,7 +36,17 @@ public class RuthraOlayUK extends BaseTest {
 	By registerSucessMsg=By.xpath("//h1[contains(text(),'Your Registration Is Complete')]");
 	By rejectCookie=By.xpath("//button[@id='onetrust-reject-all-handler']");
 	
-	public void olayUKRegistration() {
+	By emailSignIn= By.xpath("//input[@name='phdesktopbody_0$phdesktopbody_0_username']");
+	By passSignIn=By.xpath("//input[@name='phdesktopbody_0$phdesktopbody_0_password']");
+	By signInButton =By.xpath("//input[@name='phdesktopbody_0$SIGN IN']");
+	
+	By profileDetail=By.xpath("//h1[contains(text(),'YOUR PROFILE')]");
+	By signOut=By.xpath("//a[@class='logoutbtn']");
+	By logoutBtn=By.xpath("//a[@class='continue-btn btn event_profile_logout']");
+	
+	By signInBtnGlobal=By.xpath("//a[@class='event_profile_login']");
+	
+	public void olayUKRegistration() throws IOException {
 		  driver.manage().deleteAllCookies();
 		  driver.get("https://www.olay.co.uk/en-gb");
 		  
@@ -40,13 +56,23 @@ public class RuthraOlayUK extends BaseTest {
 		  click(registerLink);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(emailXpath));
 		  
+		  Excel excel= new Excel();
+		  
+		  Map<String, String> map = excel.retriveExcel();
+		  
 		  Random random= new Random();
 		  int randNum=random.nextInt(1000);
 		  
-		 String email="rrrruth"+randNum+"@gmail.com";
+		  String mail=map.get("EmailName");
+		  String pass= map.get("Password");
+		  String date=map.get("D.o.B");
+		  String firstN=map.get("FirstName");
+		  String lastN= map.get("LastName");
+		  
+		 String email=mail.substring(0, 7)+randNum+mail.substring(7);
 		 enterText(emailXpath, email);
 		 
-		 String password="Ravikumar!"+randNum;
+		 String password=pass+randNum;
 		 enterText(passwordXpath, password);
 		 enterText(confirmPassXpath, password);
 		 
@@ -59,13 +85,15 @@ public class RuthraOlayUK extends BaseTest {
 			}
 		 
 		 Select day= new Select(driver.findElement(selectDay));
-		 day.selectByValue("22");
+		 day.selectByValue(date.substring(7));
+		 
 		 
 		 Select month= new Select(driver.findElement(selectMonth));
-		 month.selectByIndex(5);
+		 month.selectByIndex(Integer.parseInt(date.substring(5, 6)));
 		 
+		
 		 Select year= new Select(driver.findElement(selectYear));
-		 year.selectByVisibleText("2001");
+		 year.selectByVisibleText(date.substring(0, 4));
 		 
 		
 		 wait.until(ExpectedConditions.elementToBeClickable(registerButton));
@@ -74,14 +102,43 @@ public class RuthraOlayUK extends BaseTest {
 		 	 
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameXpath));
 		 
-		 enterText(firstNameXpath, "Sundar");
-		 enterText(lastNameXpath, "Ruth");
-		  click(addToProfileXpath);
+		 enterText(firstNameXpath, firstN);
+		 enterText(lastNameXpath, lastN);
+		 click(addToProfileXpath);
 		  
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(registerSucessMsg));
+		 fluentwait(registerSucessMsg);
 		  
-		  Assert.assertTrue(isDisplayed(registerSucessMsg),"Registered is not sucessfully");
+		 Assert.assertTrue(isDisplayed(registerSucessMsg),"Registered is not sucessfully");
 		
+		  //checking for signIn
+		 enterText(emailSignIn, email);
+		 enterText(passSignIn, password);
+		 click(signInButton);
+		 
+		 Assert.assertTrue(isDisplayed(profileDetail), "Profile Details is not displayed");
+		 click(signOut);
+		 fluentwait(logoutBtn);
+		 click(logoutBtn);
+		 
+         click(signOut);
+		 fluentwait(logoutBtn);
+		 click(logoutBtn);
+		 
+		 
+		 fluentwait(signInBtnGlobal);
+		 click(signInBtnGlobal);
+		 
+		 //checking for signIn again
+		 enterText(emailSignIn, email);
+		 enterText(passSignIn, password);
+		 click(signInButton);
+		 
+		 Assert.assertTrue(isDisplayed(profileDetail), "Profile Details is not displayed");
+		 click(signOut);
+		 
+		 fluentwait(logoutBtn);
+		 click(logoutBtn);
+		 
 	}
 
 }

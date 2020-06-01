@@ -3,6 +3,7 @@ package com.wipro.selenium;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wipro.BaseTest;
+import com.wipro.Ass2.Ruthra_Olay_Germany;
 
 @Test
 public class Ruthra_Selectable  extends BaseTest {
@@ -22,6 +24,7 @@ public class Ruthra_Selectable  extends BaseTest {
 	By title=By.xpath("//h1[@class='entry-title']");
 	By itemList =By.xpath("//li[@class='ui-widget-content ui-selectee']");
 	
+	public static Logger log= Logger.getLogger(Ruthra_Selectable.class.getName());
 	
   public void selectable(){
 	  
@@ -35,14 +38,14 @@ public class Ruthra_Selectable  extends BaseTest {
 	  
 	  List<WebElement> list = driver.findElements(itemList);
 	  
-	  //System.out.println(list.size());
+	  //log.info(list.size());
 	  
 	  for (int i = 0; i < list.size(); i++) {
 		
 		  list.get(i).click();
-		  System.out.println(list.get(i).getText());
-		  //System.out.println(" print i "+i );
-		  System.out.println(list.get(i).getText()+" is clicked ");
+		  log.info(list.get(i).getText());
+		  //log.info(" print i "+i );
+		  log.info(list.get(i).getText()+" is clicked ");
 		  
 	}
 	  

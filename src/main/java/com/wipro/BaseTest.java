@@ -1,36 +1,27 @@
 package com.wipro;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class BaseTest {
 	
@@ -39,6 +30,7 @@ public class BaseTest {
 	public WebDriverWait wait ;
 	String driverName;
 
+	public static Logger log= Logger.getLogger(BaseTest.class.getName());
 	
 	@BeforeSuite
 	public void loadPropFile(){
@@ -52,27 +44,30 @@ public class BaseTest {
 			FileInputStream  fileObj = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\DataFiles\\application.properties");
 		    properties.load(fileObj);
 		    
-		    System.out.println("Property file is initiated successfully" );
+		    log.info("Property file is initiated successfully" );
 		    
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("In Before Test");
+		log.info("In Before Test");
 		
 		driverName=properties.getProperty("Driver");
-		System.out.println("driver is :"+driverName);
+		log.info("driver is :"+driverName);
 		
-		if(driverName.equalsIgnoreCase("ChromeDriver"))
+		if(driverName.equalsIgnoreCase("Chrome"))
 		{
-		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver","chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		}
 		
 		else if(driverName.equalsIgnoreCase("FireFox")){
-			 System.setProperty("webdriver.gecko.driver", "geckodriver.exe");   
+			log.info("Inside firefox");
+		//	 System.setProperty("webdriver.gecko.driver", "geckodriver.exe");  
+//			 DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
+//			 desiredCapabilities.setCapability("marionette", true);
 		      driver= new FirefoxDriver();
 		      driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 			  driver.manage().window().maximize();
@@ -88,7 +83,7 @@ public class BaseTest {
 	
 	@AfterClass
 	public void tearUP(){
-		System.out.println("In After Test");
+		log.info("In After Test");
 		
 		driver.quit();
 	}
@@ -113,13 +108,13 @@ public class BaseTest {
 	{
 		driver.findElement(element).click();
 		 driver.findElement(element).sendKeys(text);
-		 System.out.println("Text entered is "+text);
+		 log.info("Text entered is "+text);
 	}
 	
 	public void click(By element)
 	{
 		driver.findElement(element).click();
-		 System.out.println("Element is clicked");
+		log.info("Element is clicked");
 	}
 	
 	public String getText(By element)
@@ -133,7 +128,7 @@ public class BaseTest {
 		  for (WebElement webElement : listFile) {
 			  
 			 String text=webElement.getText();
-			 System.out.println(text);
+			 log.info(text);
 			  if (text.equals(selectText)){
 				 webElement.click();
 			  }
@@ -160,10 +155,56 @@ public class BaseTest {
 		
 		String text=(String) json.get(input);
 		
-		System.out.println(text);
+		log.info(text);
 		
 		return text;
 	}*/
 	
 	
+	public String getProperty(String keyword){
+		
+		return properties.getProperty(keyword);
+	}
+	
+	public void selectRadioButton(By locator){
+		boolean result=true;
+         Actions action= new Actions(driver);
+         result = driver.findElement(locator).isSelected();
+ 		if (result == false) {
+		action.moveToElement(driver.findElement(locator)).click().build().perform();
+ 		}
+	}
+	
+	public void selectFromListDropDown(By locator,String value){
+		Actions a = new Actions(driver);
+		List<WebElement> element=driver.findElements(locator);
+		
+		Iterator<WebElement> itr=element.iterator();
+		while (itr.hasNext()){
+			WebElement ele=itr.next();
+			
+			if(ele.getText().equals(value)){
+				a.moveToElement(ele).click().build().perform();
+				break;
+			}
+		}
+		
+		
+		
+	}
+	
+	public void actionMoveToElementClick(final By locator) {
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(locator)).click().build().perform();
+	}
+	
+	public void switchingToNewTabOrWindow() {
+		Set<String> windows = driver.getWindowHandles();
+		Iterator<String> it = windows.iterator();
+		String parentWindow = it.next();
+		System.out.println(parentWindow);
+		String childWindow = it.next();
+		System.out.println(childWindow);
+		driver.switchTo().window(childWindow);
+	}
 }

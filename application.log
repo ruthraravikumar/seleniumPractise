@@ -1,0 +1,28 @@
+2020-05-21 21:26:01,128  INFO [main] BaseTest:44 - Property file is initiated successfully
+ 2020-05-21 21:26:01,132  INFO [main] BaseTest:50 - In Before Test
+ 2020-05-21 21:26:01,132  INFO [main] BaseTest:53 - driver is :chrome
+ 2020-05-21 21:26:22,926  INFO [main] BaseTest:108 - Text entered is Ruthra
+ 2020-05-21 21:26:28,173  INFO [main] BaseTest:108 - Text entered is Sundar
+ 2020-05-21 21:26:33,467  INFO [main] BaseTest:108 - Text entered is India
+ 2020-05-21 21:26:38,766  INFO [main] BaseTest:108 - Text entered is Submitting the entry
+ 2020-05-21 21:26:40,978  INFO [main] BaseTest:114 - Element is clicked
+ 2020-05-21 21:26:40,982  INFO [main] BaseTest:83 - In After Test
+ 2020-05-21 21:27:48,842  INFO [main] BaseTest:44 - Property file is initiated successfully
+ 2020-05-21 21:27:48,845  INFO [main] BaseTest:50 - In Before Test
+ 2020-05-21 21:27:48,845  INFO [main] BaseTest:53 - driver is :chrome
+ 2020-05-21 21:28:09,706  INFO [main] BaseTest:108 - Text entered is Ruthra
+ 2020-05-21 21:28:14,941  INFO [main] BaseTest:108 - Text entered is Sundar
+ 2020-05-21 21:28:20,166  INFO [main] BaseTest:108 - Text entered is India
+ 2020-05-21 21:28:25,586  INFO [main] BaseTest:108 - Text entered is Submitting the entry
+ 2020-05-21 21:28:28,280  INFO [main] BaseTest:114 - Element is clicked
+ 2020-05-21 21:28:28,281  INFO [main] BaseTest:83 - In After Test
+ 2020-05-21 21:30:31,612  INFO [main] BaseTest:44 - Property file is initiated successfully
+ 2020-05-21 21:30:31,614  INFO [main] BaseTest:50 - In Before Test
+ 2020-05-21 21:30:31,614  INFO [main] BaseTest:53 - driver is :chrome
+ 2020-05-21 21:30:50,934  INFO [main] BaseTest:108 - Text entered is Ruthra
+ 2020-05-21 21:30:56,257  INFO [main] BaseTest:108 - Text entered is Sundar
+ 2020-05-21 21:31:01,543  INFO [main] BaseTest:108 - Text entered is India
+ 2020-05-21 21:31:06,776  INFO [main] BaseTest:108 - Text entered is Submitting the entry
+ 2020-05-21 21:31:08,738  INFO [main] BaseTest:114 - Element is clicked
+ 2020-05-21 21:31:08,740  INFO [main] BaseTest:83 - In After Test
+ 

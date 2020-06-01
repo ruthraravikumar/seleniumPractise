@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,9 +15,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wipro.BaseTest;
+import com.wipro.Excel;
 
 @Test
 public class Ruthra_Olay_Germany extends BaseTest{
+	
+	public static Logger log= Logger.getLogger(Ruthra_Olay_Germany.class.getName());
+	
 	By registerLink = By.xpath("//a[contains(text(),'Registrieren')]");
 	By femaleImg=By.id("phdesktopbody_0_imgfemale");
 	By firstName=By.xpath("//input[@name='phdesktopbody_0$phdesktopbody_0_grs_consumer[firstname]']");

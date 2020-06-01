@@ -1,9 +1,6 @@
 package com.wipro.selenium;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.json.simple.parser.ParseException;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -21,6 +18,8 @@ public class Ruthra_Droppable extends BaseTest{
 	By draggable = By.xpath("//div[@id='draggable']");
 	By droppable=By.xpath("//div[@id='droppable']");
 	
+	public static Logger log= Logger.getLogger(Ruthra_Droppable.class.getName());
+	
 	
 	public void Droppable() {
 		  
@@ -33,11 +32,11 @@ public class Ruthra_Droppable extends BaseTest{
 		  Assert.assertTrue(element.isDisplayed(),"Title is not displayed");
 		  
 		  String  dragText= getText(draggable);
-		  System.out.println(dragText);
+		  log.info(dragText);
 		  Assert.assertEquals(dragText, "Drag me to my target");
 		  
 		  String  dropText= getText(droppable);
-		  System.out.println(dropText);
+		  log.info(dropText);
 		  Assert.assertEquals(dropText, "Drop here");
 		  
 		  WebElement from = findElement(draggable);
@@ -50,7 +49,7 @@ public class Ruthra_Droppable extends BaseTest{
 		  
 	
 		String  droppedText= getText(droppable);
-		  System.out.println(droppedText);
+		  log.info(droppedText);
 		  Assert.assertEquals(droppedText, "Dropped!");
 		 
 	}

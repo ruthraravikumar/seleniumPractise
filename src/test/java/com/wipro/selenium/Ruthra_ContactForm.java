@@ -1,5 +1,6 @@
 package com.wipro.selenium;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,9 +10,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wipro.BaseTest;
+import com.wipro.Ass2.Ruthra_Olay_Germany;
 
 @Test
 public class Ruthra_ContactForm  extends BaseTest{
+	public static Logger log= Logger.getLogger(Ruthra_ContactForm.class.getName());
+	
+	
 	
 	By title=By.xpath("//h1[@class='entry-title']");
 	By firstName= By.xpath("//input[@placeholder='Your name..']");

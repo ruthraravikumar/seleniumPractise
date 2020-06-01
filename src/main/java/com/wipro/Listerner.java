@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
@@ -12,6 +13,7 @@ import org.testng.ITestResult;
 
 public class Listerner implements ITestListener {
 
+	public static Logger log= Logger.getLogger(Listerner.class.getName());
 	
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
@@ -22,7 +24,7 @@ public class Listerner implements ITestListener {
 	@Override
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
-		System.out.println("Failed TestCase : " + result.getName());
+		log.info("Failed TestCase : " + result.getName());
 		
 		
 		 File scrFile = ((TakesScreenshot)BaseTest.getDriver()).getScreenshotAs(OutputType.FILE);
@@ -34,7 +36,7 @@ public class Listerner implements ITestListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 System.out.println("Please refer the screenshot in target/screenshot");
+		 log.info("Please refer the screenshot in target/screenshot");
 		 
 	}
 
@@ -47,13 +49,13 @@ public class Listerner implements ITestListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
-		System.out.println("Starting TestCase : " + result.getName());
+		log.info("Starting TestCase : " + result.getName());
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
-		System.out.println("Success TestCase : " + result.getName());
+		log.info("Success TestCase : " + result.getName());
 		
 	}
 	

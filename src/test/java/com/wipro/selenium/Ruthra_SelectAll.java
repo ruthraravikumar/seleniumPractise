@@ -1,12 +1,9 @@
 package com.wipro.selenium;
 
-import java.util.List;
-
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,6 +11,8 @@ import com.wipro.BaseTest;
 
 @Test
 public class Ruthra_SelectAll extends BaseTest{
+	
+	public static Logger log= Logger.getLogger(Ruthra_SelectAll.class.getName());
 	
 	
 	By title=By.xpath("//h1[@class='entry-title']");
