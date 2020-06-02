@@ -1,16 +1,16 @@
 package com.wipro.selenium;
 
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wipro.BaseTest;
-import com.wipro.Ass2.Ruthra_Olay_Germany;
 
 @Test
 public class Ruthra_ContactForm  extends BaseTest{
@@ -48,13 +48,27 @@ public class Ruthra_ContactForm  extends BaseTest{
 		  WebElement link2=findElement(googleLink2);
 		  Assert.assertTrue(link2.isDisplayed(),"Link2 is not displayed");
 		  
+		  String parentWindow=driver.getWindowHandle();
+		  
 		  String linkToOpen = Keys.chord(Keys.CONTROL,Keys.RETURN); 
 		  driver.findElement(By.linkText("Google Link")).sendKeys(linkToOpen);
 		  
 		  driver.findElement(googleLink2).sendKeys(linkToOpen);
 		  click(submit);
 		  
+		  Set<String> winHandles=driver.getWindowHandles();
 		  
+		  for (String handles : winHandles) {
+			  
+			  log.info(handles);
+			  if(!handles.equals(parentWindow)){
+				  driver.switchTo().window(handles);
+				  log.info(handles);
+			  }
+			
+		}
+		  
+		  driver.switchTo().window(parentWindow);
 		  
 		  
 	}

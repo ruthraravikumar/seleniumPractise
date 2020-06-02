@@ -198,13 +198,19 @@ public class BaseTest {
 		action.moveToElement(driver.findElement(locator)).click().build().perform();
 	}
 	
-	public void switchingToNewTabOrWindow() {
+	public void switchingToWindow(String parentWinHandle) {
 		Set<String> windows = driver.getWindowHandles();
+				
+		for (String handles : windows) {
+			if(!handles.equals(parentWinHandle)){
+				driver.switchTo().window(handles);
+			}
+			}
 		Iterator<String> it = windows.iterator();
 		String parentWindow = it.next();
 		System.out.println(parentWindow);
 		String childWindow = it.next();
 		System.out.println(childWindow);
-		driver.switchTo().window(childWindow);
+		
 	}
 }

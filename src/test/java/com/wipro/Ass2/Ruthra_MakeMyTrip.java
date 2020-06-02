@@ -1,6 +1,6 @@
 package com.wipro.Ass2;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import org.testng.annotations.Test;
 
@@ -23,10 +23,10 @@ public class Ruthra_MakeMyTrip extends BaseTest{
 		  flightSearchPg.selectLocationDetails(getProperty("fromCity"), getProperty("fromCityFull"), getProperty("toCity"), getProperty("toCityFull"));
 		  flightSearchPg.selectDate(getProperty("depDate"), getProperty("returnDate"),getProperty("month"));
 		  
-		  HashMap<String, String> flightInfoForReview=flightSelectionPage.selectingCheapestOnwardAndReturnFlightFromList(getProperty("departureData"), getProperty("returnData") ,getProperty("filter"));
+		  Map<String, String> flightInfoForReview=flightSelectionPage.selectingCheapestOnwardAndReturnFlightFromList(getProperty("departureData"), getProperty("returnData") ,getProperty("filter"));
 		  
-		  reviewPage.flightBookingReview(flightInfoForReview, "dateOfDept", "dateOfReturn",
-					"fromToPlaceForDeparture", "fromToPlaceForReturn");
+		  reviewPage.flightReview(flightInfoForReview, getProperty("dateOfDept"), getProperty("dateOfReturn"),
+					getProperty("fromToPlaceForDeparture"), getProperty("fromToPlaceForReturn"));
 	}
 
 }

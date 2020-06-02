@@ -1,63 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="1" passed="0">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="32879" started-at="2020-06-01T15:42:25Z" finished-at="2020-06-01T15:42:58Z">
+  <suite name="Default suite" duration-ms="43823" started-at="2020-06-02T08:19:51Z" finished-at="2020-06-02T08:20:35Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="32879" started-at="2020-06-01T15:42:25Z" finished-at="2020-06-01T15:42:58Z">
+    <test name="Default test" duration-ms="43823" started-at="2020-06-02T08:19:51Z" finished-at="2020-06-02T08:20:35Z">
       <class name="com.wipro.Ass2.Ruthra_MakeMyTrip">
-        <test-method status="PASS" signature="loadPropFile()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="loadPropFile" is-config="true" duration-ms="9" started-at="2020-06-01T21:12:25Z" finished-at="2020-06-01T21:12:25Z">
+        <test-method status="PASS" signature="loadPropFile()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="loadPropFile" is-config="true" duration-ms="10" started-at="2020-06-02T13:49:51Z" finished-at="2020-06-02T13:49:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadPropFile -->
-        <test-method status="PASS" signature="startUp()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="startUp" is-config="true" duration-ms="10622" started-at="2020-06-01T21:12:25Z" finished-at="2020-06-01T21:12:36Z">
+        <test-method status="PASS" signature="startUp()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="startUp" is-config="true" duration-ms="10320" started-at="2020-06-02T13:49:51Z" finished-at="2020-06-02T13:50:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method status="FAIL" signature="MMMFightBooking()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="MMMFightBooking" duration-ms="20084" started-at="2020-06-01T21:12:36Z" finished-at="2020-06-01T21:12:56Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[Return flight Details are not correct expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Return flight Details are not correct expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:94)
-	at org.testng.Assert.failNotEquals(Assert.java:494)
-	at org.testng.Assert.assertTrue(Assert.java:42)
-	at com.wipro.PageObjectModel.MMTFlightSelectionPage.selectingCheapestOnwardAndReturnFlightFromList(MMTFlightSelectionPage.java:43)
-	at com.wipro.Ass2.Ruthra_MakeMyTrip.MMMFightBooking(Ruthra_MakeMyTrip.java:26)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:207)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:178)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method status="PASS" signature="MMMFightBooking()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="MMMFightBooking" duration-ms="31725" started-at="2020-06-02T13:50:01Z" finished-at="2020-06-02T13:50:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MMMFightBooking -->
-        <test-method status="PASS" signature="tearUP()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="tearUP" is-config="true" duration-ms="2159" started-at="2020-06-01T21:12:56Z" finished-at="2020-06-01T21:12:58Z">
+        <test-method status="PASS" signature="tearUP()[pri:0, instance:com.wipro.Ass2.Ruthra_MakeMyTrip@2f32ff]" name="tearUP" is-config="true" duration-ms="1764" started-at="2020-06-02T13:50:33Z" finished-at="2020-06-02T13:50:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearUP -->
